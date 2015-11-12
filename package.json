@@ -1,0 +1,15 @@
+{
+  "name": "node-form",
+  "version": "0.0.1",
+  "description": "elgForm",
+  "main": "server.js",
+  "author": "Sew",
+  "private": true,
+  "dependencies": {
+    "express": "~4",
+    "mongodb": ">= 0.9.6-7",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+  }
+
+}

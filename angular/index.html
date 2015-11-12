@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <!--script type="text/javascript" src="../server.js"></script-->
+    <title>eLocalGoverment</title>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">ElG</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home </a></li>
+                    <li><a href="#">About US</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right form-group">
+                    <li><a href="#">sewwandisachithra@gmail.com</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sinhala</a></li>
+                            <li><a href="#">Tamil</a></li>
+                        </ul>
+                    </li>
+
+                    <!--<li >
+                        <a href="#" class="glyphicon glyphicon-share-alt" aria-hidden="true">Sing Out</a>
+                    </li>-->
+
+                        <button type="button" class="btn btn-link "style="margin-top: 9px">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign Out
+                        </button>
+
+
+
+                </ul>
+
+
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="col-md-2" ng-controller="ctrl1">
+
+        <h3 class="text-center">eLG Products</h3>
+        <h5><a ng-model="unAll" ng-click="uncheckAll()">Collapse all </a>
+            <a ng-model="cAll" ng-click="checkAll()">Expand all </a>
+        </h5>
+
+        <div class=" row col-lg-offset-1">
+            <li  class="list-unstyled" ng-repeat="item in items">
+                <div>
+                    <input   ng-model="item.selected" type=checkbox> {{item.name}}
+                    <div ng-show=item.selected>
+                        <ul>
+                            <li class="list-unstyled" ng-repeat="subItem in item.sub"><a>{{subItem.name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-10" ng-controller="ctrl1">
+        <br><br>
+        <ul class="list-group">
+            <li class="list-group-item"><h4>External.User.Registration.Heading</h4></li>
+            <li class="list-group-item">
+
+                <form name="frm">
+
+                    <div class="row form-group">
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right">Type</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <div class="btn-group btn-input clearfix" >
+                                <select class="form-control" ng-model="form.types">
+
+                                    <option ng-repeat="typ in type" >{{typ}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >Name of User in English</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="text" class="form-control"  ng-model="form.userName" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >Name of User in Sinhala</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="text" class="form-control"  ng-model="form.NameSinhala">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >Name of User in Tamil</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="text" class="form-control"  ng-model="form.NameTamil">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >NIC</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="text" class="form-control"  ng-model="form.NIC" required>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <div class="checkbox" >
+                                <label>
+                                    <input type="checkbox" ng-model="form.active"> Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >User Name</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="text" class="form-control"  ng-model="form.user" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >Password</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="password" class="form-control"  ng-model="form.password" required equals={{form.confpassword}}>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" >
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right" >Confirmation of the Password</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input type="password" class="form-control"  name="confpassword" ng-model="form.confpassword" required pw-check="form.password">
+                            <div class="msg-block" ng-show="frm.$error"> <span class="msg-error" ng-show="frm.confpassword.$error.pwmatch">Passwords don't match.</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row form-group">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right">Duty Start Date</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input class="form-control" ng-model="form.startDate">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-3 ">
+                            <label class="control-label pull-right">Registration Date</label>
+                        </div>
+                        <div class="col-md-4 row">
+                            <input class="form-control" ng-model="form.regDate">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="save()">Submit</button>
+
+                </form>
+
+
+            </li>
+        </ul>
+
+
+
+    </div>
+
+
+</body>
+</html>

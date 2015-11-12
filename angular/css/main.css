@@ -1,0 +1,12 @@
+.btn-input {
+    display: block;
+}
+
+.btn-input .btn.form-control {
+    text-align: left;
+}
+
+.selectpicker{
+    style: 'btn-info';
+    size: 4px;
+}s
