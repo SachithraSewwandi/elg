@@ -2,60 +2,14 @@
  * Created by hsenid on 11/10/15.
  */
 
-angular.module("myapp",[])
-    .controller("ctrl1",["$scope","$http",function($scope,$http){
+var app=angular.module("myapp",[]);
 
-       $scope.items=[
-            {
-                name:"One",
-                sub:[{name:"one"},
-                    {name:"one"},
-                    {name:"one" }
-                ],
-                selected:false
-            },
-            {
-                name:"two",
-                sub:[{name:"one"},
-                    {name:"one"},
-                    {name:"one" }
-                ],
-                selected:false
-            },
-            {
-                name:"three",
-                sub:[{name:"one"},
-                    {name:"one"},
-                    {name:"one" }
-                ],
-                selected:false
-            },
-
-        ];
-
-
-
+app.controller("FormCtrl1",["$scope","$http",function($scope,$http){
 
         $scope.type=[
             "Type 1","Type 2","Type 3","Type 4","Type 5"
         ];
 
-
-
-        $scope.checkAll=function(){
-            $scope.select = true;
-            angular.forEach($scope.items, function (obj) {
-                obj.selected = true;
-            });
-        };
-
-        $scope.uncheckAll=function(){
-            $scope.select = true;
-            angular.forEach($scope.items, function (obj) {
-                obj.selected = false
-                ;
-            });
-        };
 
         $scope.save = function() {
 
@@ -74,10 +28,10 @@ angular.module("myapp",[])
                regDate:JSON.stringify($scope.form.regDate),
             };
 
-            console.log($scope.form.type);
+            console.log($scope.form);
             $http({
                 method: 'POST',
-                url: "localhost/5730/",
+                url: "localhost/3008/",
                 data: $.param(data),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
@@ -89,18 +43,63 @@ angular.module("myapp",[])
             });
         };
 }])
-    .directive('pwCheck', [function () {
-        return {
-            require: 'ngModel',
-            link: function (scope, elem, attrs, ctrl) {
-
-                var me = attrs.ngModel;
-                var matchTo = attrs.pwCheck;
-
-                scope.$watch('[me, matchTo]', function(value){
-                    ctrl.$setValidity('pwmatch', scope[me] === scope[matchTo] );
+app.directive('pwCheck', function() {
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            $(elem).add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    var v = elem.val()===$(firstPassword).val();
+                    ctrl.$setValidity('pwcheck', v);
                 });
-
-            }
+            });
         }
-    }]);
+    }
+});
+
+app.controller("sidebarCntrl",["$scope","$http",function($scope,$http){
+    $scope.items=[
+        {
+            name:"One",
+            sub:[{name:"one"},
+                {name:"one"},
+                {name:"one" }
+            ],
+            selected:false
+        },
+        {
+            name:"two",
+            sub:[{name:"one"},
+                {name:"one"},
+                {name:"one" }
+            ],
+            selected:false
+        },
+        {
+            name:"three",
+            sub:[{name:"one"},
+                {name:"one"},
+                {name:"one" }
+            ],
+            selected:false
+        },
+
+    ];
+
+    $scope.checkAll=function(){
+        $scope.select = true;
+        angular.forEach($scope.items, function (obj) {
+            obj.selected = true;
+        });
+    };
+
+    $scope.uncheckAll=function(){
+        $scope.select = true;
+        angular.forEach($scope.items, function (obj) {
+            obj.selected = false
+            ;
+        });
+    };
+}]);
+
